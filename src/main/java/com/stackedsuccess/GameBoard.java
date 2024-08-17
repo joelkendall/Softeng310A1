@@ -19,6 +19,7 @@ public class GameBoard {
   private int line = 0;
   private int linesCleared = 0;
   private boolean holdUsed = false;
+  private int gamespeed;
 
   private GameBoardController controller;
 
@@ -46,6 +47,7 @@ public class GameBoard {
     currentTetrimino = TetriminoFactory.createRandomTetrimino();
     nextTetrimino = TetriminoFactory.createRandomTetrimino();
     frameCount = 0;
+    gamespeed = 100;
   }
 
   /**
@@ -152,6 +154,7 @@ public class GameBoard {
     linesCleared += fullRows;
     updateLines(fullRows);
     updateLevel();
+    changeGameSpeed();
     calculateScore(fullRows);
   }
 
@@ -279,6 +282,22 @@ public class GameBoard {
     if (controller != null) {
       controller.setHoldPieceView(holdTetrimino);
       controller.setNextPieceView(nextTetrimino);
+    }
+  }
+
+  /**
+   * Varies game speed based on level. Levels are easier up to 10, with difficulty
+   * jump at 10, and 15, and kill screen at level 20
+   */
+  private void changeGameSpeed() {
+    if (level < 10) {
+      gamespeed = 10 - (level * 5);
+    } else if (level < 15) {
+      gamespeed = 50 - level;
+    } else if (level < 20) {
+      gamespeed = 30 - level;
+    } else {
+      gamespeed = 3;
     }
   }
 
