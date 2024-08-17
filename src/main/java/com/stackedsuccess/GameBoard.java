@@ -17,6 +17,7 @@ public class GameBoard {
   private int level = 1;
   private int linesCleared = 0;
   private boolean holdUsed = false;
+  private int gameSpeed = 1000;
 
   private GameBoardController controller;
 
@@ -44,6 +45,7 @@ public class GameBoard {
     currentTetrimino = TetriminoFactory.createRandomTetrimino();
     nextTetrimino = TetriminoFactory.createRandomTetrimino();
     frameCount = 0;
+    gameSpeed = 100;
   }
 
   /** Update the state of the board. */
@@ -51,7 +53,7 @@ public class GameBoard {
     controller.setNextPieceView(nextTetrimino);
     frameCount++;
     // Stagger automatic tetrimino movement based on frame count
-    if (frameCount % 100 == 0) {
+    if (frameCount % gameSpeed == 0) {
       if (!checkCollision(currentTetrimino.xPos, currentTetrimino.yPos + 1)) {
         currentTetrimino.updateTetrimino(this, Action.MOVE_DOWN);
       } else {
@@ -143,6 +145,7 @@ public class GameBoard {
     }
     linesCleared += fullRows;
     updateLevel();
+    varyGameSpeed();
     calculateScore(fullRows);
   }
 
@@ -264,6 +267,13 @@ public class GameBoard {
       controller.setHoldPieceView(holdTetrimino);
       controller.setNextPieceView(nextTetrimino);
     }
+  }
+
+  /**
+   * Varying game speed based on level.
+   */
+  private void varyGameSpeed() {
+    gameSpeed = (100/10)*(11-level);
   }
 
   /**
