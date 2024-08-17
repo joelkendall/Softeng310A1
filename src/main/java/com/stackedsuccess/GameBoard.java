@@ -17,7 +17,7 @@ public class GameBoard {
   private int level = 1;
   private int linesCleared = 0;
   private boolean holdUsed = false;
-  private int gameSpeed = 1000;
+  private int gameSpeed;
 
   private GameBoardController controller;
 
@@ -156,8 +156,8 @@ public class GameBoard {
    */
   private void updateLevel() {
     System.out.println("Lines cleared: " + linesCleared);
-    if (linesCleared >= 10) {
-      linesCleared -= 10;
+    if (linesCleared >= 1) {
+      linesCleared -= 1;
       level++;
       System.out.println("Level increased to: " + level);
       controller.updateLevel(level);
@@ -270,10 +270,20 @@ public class GameBoard {
   }
 
   /**
-   * Varying game speed based on level.
+   * Varying game speed based on level. Small increments up to level 10, then difficulty jumps at
+   * level 10, and 15, with kill screen at level 20.
    */
   private void varyGameSpeed() {
-    gameSpeed = (100/10)*(11-level);
+     if (level < 10) {
+      gameSpeed = 100 - ((level - 1) * 5); 
+     } else if (level < 15) {
+      gameSpeed = 50 - level; 
+     } else if (level < 20) {
+      gameSpeed = 30 - level; 
+     } else { 
+      gameSpeed = 3;
+     }
+
   }
 
   /**
