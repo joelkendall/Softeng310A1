@@ -83,7 +83,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
       for (int col = 0; col < layout[row].length; col++) {
         if (layout[row][col] != 0) {
           Pane pane = new Pane();
-          pane.setStyle("-fx-background-color: black;");
+          pane.setStyle(getTetriminoStyle(tetrimino));
           gameGrid.add(pane, tetrimino.getXPos() + col, tetrimino.getYPos() + row);
         }
       }
@@ -104,7 +104,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
             for (int col = 0; col < layout[row].length; col++) {
               if (layout[row][col] != 0) {
                 Pane pane = new Pane();
-                pane.setStyle("-fx-background-color: black;");
+                pane.setStyle(getTetriminoStyle(tetrimino));
                 displayGrid.add(pane, tetrimino.getXPos() + col, tetrimino.getYPos() + row);
               }
             }
@@ -276,6 +276,44 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
     Image image = new Image("/images/" + tetrimino.getClass().getSimpleName() + ".png");
     holdPieceView.setImage(image);
   }
+
+  /** Method for checking which tetrimino shape is in play, and setting the style accordingly
+   * 
+   * @param tetrimino the tetrimino to be displayed in the hold image view
+   * @return tetriminoStyle the style of the tetrimino
+   */
+  public String getTetriminoStyle(Tetrimino tetrimino) {
+    String tetriminoStyle = "";
+    String borderColour = "-fx-border-color: black;";
+    String borderThickness = "-fx-border-width: 2px;";
+    switch (tetrimino.getClass().getSimpleName()) {
+      case "IShape":
+        tetriminoStyle = "-fx-background-color: #ff7e00;" + borderColour + borderThickness;
+        break;
+      case "JShape":
+        tetriminoStyle = "-fx-background-color: #2c349c;" + borderColour + borderThickness;
+        break;
+      case "LShape":
+        tetriminoStyle = "-fx-background-color: #ec1c24;" + borderColour + borderThickness;
+        break;
+      case "OShape":
+        tetriminoStyle = "-fx-background-color: #24b44c;" + borderColour + borderThickness;
+        break;
+      case "SShape":
+        tetriminoStyle = "-fx-background-color: #a424f4;" + borderColour + borderThickness;
+        break;
+      case "TShape":
+        tetriminoStyle = "-fx-background-color: #fcf404;" + borderColour + borderThickness;
+        break;
+      case "ZShape":
+        tetriminoStyle = "-fx-background-color: #04b4ec;" + borderColour + borderThickness;
+        break;
+      default:
+        tetriminoStyle = "-fx-background-color: #000000;" + borderColour + borderThickness;
+        break;
+    }
+    return tetriminoStyle;
+    }
 
   /**
    * Method for handling game over event, when tetriminos spawn and collide into each other. Exits
