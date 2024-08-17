@@ -34,6 +34,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
   private int score = 0;
   private int line = 0;
   private ArrayList<Node> previousGhostTetrominos = new ArrayList<>();
+  private static Map<String, String> allTetriminoStyles = new HashMap<>();
 
   /**
    * Initialises the game board controller, setting up the game grid and starting the game instance.
@@ -49,6 +50,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
     lineLabel.setText("Line: " + line);
     displayGrid.gridLinesVisibleProperty().set(true);
     gameInstance.setTetriminoUpdateListener(this);
+    initTetriminoStyles();
     Platform.runLater(
         () -> {
           gameInstance.start();
@@ -83,7 +85,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
       for (int col = 0; col < layout[row].length; col++) {
         if (layout[row][col] != 0) {
           Pane pane = new Pane();
-          pane.setStyle(getTetriminoStyle(tetrimino));
+          pane.setStyle("-fx-background-color: " + getTetriminoStyle(tetrimino));
           gameGrid.add(pane, tetrimino.getXPos() + col, tetrimino.getYPos() + row);
         }
       }
@@ -104,7 +106,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
             for (int col = 0; col < layout[row].length; col++) {
               if (layout[row][col] != 0) {
                 Pane pane = new Pane();
-                pane.setStyle(getTetriminoStyle(tetrimino));
+                pane.setStyle("-fx-background-color: " + getTetriminoStyle(tetrimino));
                 displayGrid.add(pane, tetrimino.getXPos() + col, tetrimino.getYPos() + row);
               }
             }
@@ -283,37 +285,25 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
    * @return tetriminoStyle the style of the tetrimino
    */
   public String getTetriminoStyle(Tetrimino tetrimino) {
-    String tetriminoStyle = "";
-    String borderColour = "-fx-border-color: black;";
-    String borderThickness = "-fx-border-width: 2px;";
-    switch (tetrimino.getClass().getSimpleName()) {
-      case "IShape":
-        tetriminoStyle = "-fx-background-color: #ff7e00;" + borderColour + borderThickness;
-        break;
-      case "JShape":
-        tetriminoStyle = "-fx-background-color: #2c349c;" + borderColour + borderThickness;
-        break;
-      case "LShape":
-        tetriminoStyle = "-fx-background-color: #ec1c24;" + borderColour + borderThickness;
-        break;
-      case "OShape":
-        tetriminoStyle = "-fx-background-color: #24b44c;" + borderColour + borderThickness;
-        break;
-      case "SShape":
-        tetriminoStyle = "-fx-background-color: #a424f4;" + borderColour + borderThickness;
-        break;
-      case "TShape":
-        tetriminoStyle = "-fx-background-color: #fcf404;" + borderColour + borderThickness;
-        break;
-      case "ZShape":
-        tetriminoStyle = "-fx-background-color: #04b4ec;" + borderColour + borderThickness;
-        break;
-      default:
-        tetriminoStyle = "-fx-background-color: #000000;" + borderColour + borderThickness;
-        break;
-    }
-    return tetriminoStyle;
-    }
+    String className = tetrimino.getClass().getSimpleName();
+    String borderStyle = "-fx-border-color: black; -fx-border-width: 2px;";
+    String tetriminoStyle = allTetriminoStyles.get(className);
+    return tetriminoStyle + ";" + borderStyle;
+  }
+
+  /** Method for initialising the hashmap of Tetrimino colours
+   * 
+   */
+  private void initTetriminoStyles() {
+    allTetriminoStyles.clear();
+    allTetriminoStyles.put("IShape", "#ff7e00");
+    allTetriminoStyles.put("JShape", "#2c349c");
+    allTetriminoStyles.put("LShape", "#ec1c24");
+    allTetriminoStyles.put("OShape", "#24b44c");
+    allTetriminoStyles.put("SShape", "#a424f4");
+    allTetriminoStyles.put("TShape", "#fcf404");
+    allTetriminoStyles.put("ZShape", "#04b4ec");
+  }
 
   /**
    * Method for handling game over event, when tetriminos spawn and collide into each other. Exits
