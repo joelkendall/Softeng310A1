@@ -279,7 +279,7 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
 
   /** Method for checking which tetrimino shape is in play, and setting the style accordingly
    * 
-   * @param tetrimino the tetrimino to be displayed in the hold image view
+   * @param tetrimino the tetrimino on screen
    * @return tetriminoStyle the style of the tetrimino
    */
   public String getTetriminoStyle(Tetrimino tetrimino) {
