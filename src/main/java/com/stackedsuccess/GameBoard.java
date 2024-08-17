@@ -156,8 +156,8 @@ public class GameBoard {
    */
   private void updateLevel() {
     System.out.println("Lines cleared: " + linesCleared);
-    if (linesCleared >= 1) {
-      linesCleared -= 1;
+    if (linesCleared >= 10) {
+      linesCleared -= 10;
       level++;
       System.out.println("Level increased to: " + level);
       controller.updateLevel(level);
