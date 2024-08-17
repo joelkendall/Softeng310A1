@@ -15,7 +15,7 @@ public class GameBoard {
   private Tetrimino holdTetrimino;
   private int frameCount;
   private int score = 0;
-  private int level = 10;
+  private int level = 1;
   private int line = 0;
   private int linesCleared = 0;
   private boolean holdUsed = false;
@@ -300,7 +300,7 @@ public class GameBoard {
     } else {
       gameSpeed = 3;
     }
-    
+
   }
 
   /**
