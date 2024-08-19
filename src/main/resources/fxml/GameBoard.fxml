@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="basePane" onKeyPressed="#onKeyPressed" prefHeight="895.0" prefWidth="1338.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stackedsuccess.controllers.GameBoardController">
+<Pane fx:id="basePane" onKeyPressed="#onKeyPressed" prefHeight="895.0" prefWidth="1338.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stackedsuccess.controllers.GameBoardController">
    <children>
       <ImageView fitHeight="907.0" fitWidth="1357.0" layoutX="-10.0" pickOnBounds="true">
          <image>
@@ -136,6 +136,36 @@
                   <Cursor fx:constant="DISAPPEAR" />
                </cursor>
                <children>
+                  <VBox fx:id="gameOverBox" alignment="CENTER" disable="true" layoutX="62.0" layoutY="47.0" prefHeight="636.0" prefWidth="449.0" spacing="60.0" visible="false">
+                     <children>
+                        <Label fx:id="gameOverLabel" text="GAME OVER!" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="86.0" />
+                           </font></Label>
+                        <Label fx:id="gameOverScoreLabel" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="30.0" />
+                           </font></Label>
+                        <Label fx:id="gameOverHighScoreLabel" layoutX="10.0" layoutY="10.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="30.0" />
+                           </font></Label>
+                        <Button fx:id="gameOverRestartButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: #ffffff;" text="Restart / Main Menu">
+                           <font>
+                              <Font name="Agency FB" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="gameOverExitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" text="EXIT">
+                           <font>
+                              <Font name="Agency FB" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </VBox>
                   <GridPane fx:id="gameGrid" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="555.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
