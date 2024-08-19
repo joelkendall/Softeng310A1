@@ -52,7 +52,7 @@
             <Image url="@../images/tetris-background-placeholder.png" />
          </image>
       </ImageView>
-      <Button fx:id="gameOverRestartButton" layoutX="54.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: #ffffff;" text="Restart / Main Menu">
+      <Button fx:id="gameOverRestartButton" disable="true" layoutX="54.0" layoutY="567.0" mnemonicParsing="false" onAction="#onClickRestart" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: #ffffff;" text="Restart / Main Menu" visible="false">
          <font>
             <Font name="Agency FB" size="17.0" />
          </font>
@@ -60,7 +60,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="gameOverExitButton" layoutX="55.0" layoutY="665.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" text="EXIT">
+      <Button fx:id="gameOverExitButton" disable="true" layoutX="55.0" layoutY="665.0" mnemonicParsing="false" onAction="#onClickExit" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" text="EXIT" visible="false">
          <font>
             <Font name="Agency FB" size="17.0" />
          </font>

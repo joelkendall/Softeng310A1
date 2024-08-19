@@ -9,6 +9,7 @@ import java.util.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -315,6 +316,16 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
     return tetriminoStyle + ";" + borderStyle;
   }
 
+  @FXML
+    void onClickExit(ActionEvent event) {
+        System.exit(0);
+    }
+
+  @FXML
+    void onClickRestart(ActionEvent event) {
+        // will add functionality once main menu is made
+    }
+
   /** Method for initialising the hashmap of Tetrimino colours */
   private void initTetriminoStyles() {
     allTetriminoStyles.clear();
@@ -355,6 +366,10 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
       gameGrid.getChildren().clear();
       gameOverBox.setVisible(true);
       gameOverBox.setDisable(false);
+      gameOverExitButton.setDisable(false);
+      gameOverRestartButton.setDisable(false);
+      gameOverExitButton.setVisible(true);
+      gameOverRestartButton.setVisible(true);
       gameOverScoreLabel.setText("Score: " + scoreLabel.getText());
       try {
         gameOverHighScoreLabel.setText("High Score: " + ScoreRecorder.getHighScore());
