@@ -52,6 +52,22 @@
             <Image url="@../images/tetris-background-placeholder.png" />
          </image>
       </ImageView>
+      <Button fx:id="gameOverRestartButton" layoutX="54.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: #ffffff;" text="Restart / Main Menu">
+         <font>
+            <Font name="Agency FB" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="gameOverExitButton" layoutX="55.0" layoutY="665.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" text="EXIT">
+         <font>
+            <Font name="Agency FB" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <VBox alignment="CENTER" layoutX="979.0" layoutY="500.0" prefHeight="330.0" prefWidth="250.0" style="-fx-background-insets: 5; -fx-border-width: 3; -fx-border-style: solid; -fx-border-radius: 18 18 18 18; -fx-background-color: #afafaf; -fx-background-radius: 17 17 17 17;">
          <children>
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="315.0" style="-fx-font-weight: BOLD;" text="SCORE" textFill="WHITE">
@@ -150,20 +166,6 @@
                            <font>
                               <Font name="Agency FB" size="30.0" />
                            </font></Label>
-                        <Button fx:id="gameOverRestartButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: #ffffff;" text="Restart / Main Menu">
-                           <font>
-                              <Font name="Agency FB" size="17.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="gameOverExitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" text="EXIT">
-                           <font>
-                              <Font name="Agency FB" size="17.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
                      </children>
                   </VBox>
                   <GridPane fx:id="gameGrid" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="555.0">

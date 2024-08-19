@@ -355,6 +355,12 @@ public class GameBoardController implements GameInstance.TetriminoUpdateListener
       gameGrid.getChildren().clear();
       gameOverBox.setVisible(true);
       gameOverBox.setDisable(false);
+      gameOverScoreLabel.setText("Score: " + scoreLabel.getText());
+      try {
+        gameOverHighScoreLabel.setText("High Score: " + ScoreRecorder.getHighScore());
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     });
     animationTimeline.getKeyFrames().add(actionsKeyFrame);
 
